@@ -9,9 +9,18 @@ function wiki#make_link(file) abort
   endif
 endfunction
 
-function wiki#goto(file) abort
+function wiki#goto(file, how) abort
   call wiki#make_link(a:file)
-  execute 'find' a:file
+  let l:cmd = get(
+        \ {
+        \   'edit': 'find',
+        \   'split': 'sfind',
+        \   'vert': 'vertical sfind',
+        \   'tab': 'tab sfind',
+        \ },
+        \ a:how,
+        \ 'find')
+  execute l:cmd a:file
 endfunction
 
 function wiki#index(root, prefix, ...) abort
