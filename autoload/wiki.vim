@@ -23,8 +23,9 @@ function wiki#goto(file, how) abort
   execute l:cmd a:file
 endfunction
 
-function s:make_index(files, prefix, exclude) abort
-  return a:files
+function s:make_index(glob, root, prefix, exclude) abort
+  let l:dir = isdirectory(a:root) ? a:root : fnamemodify(a:root, ':h')
+  return globpath(a:root, a:glob, 1, 1)
         \ ->map(printf('substitute(v:val, "^%s/", "", "")', g:wiki_root))
         \ ->filter('count(a:exclude, v:val) == 0')
         \ ->map(printf('substitute(v:val, "^", "%s", "")', escape(a:prefix, '"')))
@@ -33,11 +34,9 @@ function s:make_index(files, prefix, exclude) abort
 endfunction
 
 function wiki#tree_index(root, prefix, exclude) abort
-  let l:dir = isdirectory(a:root) ? a:root : fnamemodify(a:root, ':h')
-  return globpath(a:root, '**', 1, 1)->s:make_index(a:prefix, a:exclude)
+  return s:make_index('**', a:root, a:prefix, a:exclude)
 endfunction
 
 function wiki#flat_index(root, prefix, exclude) abort
-  let l:dir = isdirectory(a:root) ? a:root : fnamemodify(a:root, ':h')
-  return globpath(a:root, '*', 1, 1)->s:make_index(a:prefix, a:exclude)
+  return s:make_index('*', a:root, a:prefix, a:exclude)
 endfunction
