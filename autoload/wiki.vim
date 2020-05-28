@@ -23,6 +23,10 @@ function wiki#goto(file, how) abort
   execute l:cmd a:file
 endfunction
 
+function wiki#search(pattern) abort
+  execute 'vimgrep' a:pattern g:wiki_root.'/**'
+endfunction
+
 function s:make_index(glob, root, prefix, exclude) abort
   let l:dir = isdirectory(a:root) ? a:root : fnamemodify(a:root, ':h')
   return globpath(l:dir, a:glob, 1, 1)
