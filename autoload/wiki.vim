@@ -7,6 +7,9 @@ function wiki#wikis(glob) abort
 endfunction
 
 function wiki#search(pattern) abort
+  if empty(a:pattern) || a:pattern =~# '^\s\+$'
+    return
+  end
   execute 'vimgrep' a:pattern g:wiki_root.'/**'
 endfunction
 
