@@ -1,5 +1,5 @@
-function wiki#edit_root() abort
-  execute 'edit' g:wiki_root
+function wiki#edit_root(how) abort
+  execute a:how g:wiki_root
 endfunction
 
 function wiki#make_link(file) abort
