@@ -2,6 +2,10 @@ function wiki#edit_root(how) abort
   execute a:how g:wiki_root
 endfunction
 
+function wiki#wikis(glob) abort
+  return globpath(g:wiki_root, a:glob, v:false, v:true)
+endfunction
+
 function wiki#search(pattern) abort
   execute 'vimgrep' a:pattern g:wiki_root.'/**'
 endfunction
@@ -27,6 +31,10 @@ function wiki#goto(file, how) abort
   execute l:cmd a:file
 endfunction
 
+function s:strip_root(string) abort
+  return substitute(a:string, printf('^%s/', g:wiki_root), '', '')
+endfunction
+
 function s:make_index(glob, root, prefix, exclude) abort
   let l:dir = isdirectory(a:root) ? a:root : fnamemodify(a:root, ':h')
   return globpath(l:dir, a:glob, 1, 1)
@@ -46,8 +54,8 @@ function wiki#flat_index(root, prefix, exclude) abort
 endfunction
 
 function wiki#complete_wikis(ArgLead, CmdLine, CursorPos) abort
-  const wikis = globpath(g:wiki_root, '**', v:false, v:true)
-  const wikis_no_root = wikis->map({ _, w -> substitute(w, '^'.g:wiki_root.'/', '', '') })
-  const matching = wikis_no_root->filter({ _, w -> w =~# a:ArgLead })
-  return matching
+  const l:wikis = wiki#wikis('**')
+  const l:wikis_no_root = l:wikis->map({ _, w -> s:strip_root(w) })
+  const l:matching = l:wikis_no_root->filter({ _, w -> w =~# a:ArgLead })
+  return l:matching
 endfunction
