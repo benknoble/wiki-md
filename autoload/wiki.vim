@@ -44,3 +44,10 @@ endfunction
 function wiki#flat_index(root, prefix, exclude) abort
   return s:make_index('*', a:root, a:prefix, a:exclude)
 endfunction
+
+function wiki#complete_wikis(ArgLead, CmdLine, CursorPos) abort
+  const wikis = globpath(g:wiki_root, '**', v:false, v:true)
+  const wikis_no_root = wikis->map({ _, w -> substitute(w, '^'.g:wiki_root.'/', '', '') })
+  const matching = wikis_no_root->filter({ _, w -> w =~# a:ArgLead })
+  return matching
+endfunction
