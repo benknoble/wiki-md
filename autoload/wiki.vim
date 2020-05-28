@@ -2,6 +2,10 @@ function wiki#edit_root(how) abort
   execute a:how g:wiki_root
 endfunction
 
+function wiki#search(pattern) abort
+  execute 'vimgrep' a:pattern g:wiki_root.'/**'
+endfunction
+
 function wiki#make_link(file) abort
   let l:found = findfile(a:file)
   if empty(l:found)
@@ -21,10 +25,6 @@ function wiki#goto(file, how) abort
         \ a:how,
         \ 'find')
   execute l:cmd a:file
-endfunction
-
-function wiki#search(pattern) abort
-  execute 'vimgrep' a:pattern g:wiki_root.'/**'
 endfunction
 
 function s:make_index(glob, root, prefix, exclude) abort
