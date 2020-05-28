@@ -11,7 +11,7 @@ function wiki#search(pattern) abort
 endfunction
 
 function wiki#make_link(file) abort
-  let l:found = findfile(a:file)
+  const l:found = findfile(a:file)
   if empty(l:found)
     call writefile([], g:wiki_root.'/'.a:file)
   endif
@@ -19,7 +19,7 @@ endfunction
 
 function wiki#goto(file, how) abort
   call wiki#make_link(a:file)
-  let l:cmd = get(
+  const l:cmd = get(
         \ {
         \   'edit': 'find',
         \   'split': 'sfind',
@@ -36,11 +36,11 @@ function s:strip_root(string) abort
 endfunction
 
 function s:make_index(glob, root, prefix, exclude) abort
-  let l:dir = isdirectory(a:root) ? a:root : fnamemodify(a:root, ':h')
+  const l:dir = isdirectory(a:root) ? a:root : fnamemodify(a:root, ':h')
   return globpath(l:dir, a:glob, 1, 1)
-        \ ->map(printf('substitute(v:val, "^%s/", "", "")', g:wiki_root))
-        \ ->filter('count(a:exclude, v:val) == 0')
-        \ ->map(printf('substitute(v:val, "^", "%s", "")', escape(a:prefix, '"')))
+        \ ->map({ _, w -> s:strip_root(w) })
+        \ ->filter({ _, w -> count(a:exclude, w) == 0 })
+        \ ->map({ _, w -> substitute(w, '^', escape(a:prefix, '"'), '') })
         \ ->sort()
         \ ->join("\n")
 endfunction
