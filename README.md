@@ -77,7 +77,10 @@ person's unique wiki experience. I think we all have something to learn from
 each other's perspective on information management.
 
 To that end, I encourage you to share and discuss your ideas right here on the
-repository via GitHub's discussions feature.
+repository by [creating an issue to share your
+setup](https://github.com/benknoble/wiki-md/issues/new?template=custom-setup.md).
+Unfortunately, when I released this plugin, GitHub Discussions was not out of
+Beta, so that was not an option then.
 
 I do not use social media and am rarely on Reddit, and I find those and most
 other methods both disorganized and not discoverable. Of course, you should feel

@@ -135,6 +135,11 @@ https://github.com/benknoble/wiki-md/pulls
 
 Existing code determines style guidelines.
 
+SHARING                                                      *wiki-md-sharing*
+
+Share your setup at
+https://github.com/benknoble/wiki-md/issues/new?template=custom-setup.md
+
 CREDITS                                                      *wiki-md-credits*
 
 Maintained by:
