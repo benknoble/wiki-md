@@ -1,0 +1,146 @@
+*wiki-md.txt*       For Vim version 8.0+        Last change: 2020 June 21
+*wiki-md*
+
+
+                         _ _    _                      _ ~
+                        (_) |  (_)                    | |~
+               __      ___| | ___ ______ _ __ ___   __| |~
+               \ \ /\ / / | |/ / |______| '_ ` _ \ / _` |~
+                \ V  V /| |   <| |      | | | | | | (_| |~
+                 \_/\_/ |_|_|\_\_|      |_| |_| |_|\__,_|~
+
+==============================================================================
+
+INTRO                                                          *wiki-md-intro*
+
+wiki-md is a (yet another) wiki plugin for vim. It aims to be filetype- and
+syntax-agnostic and build on core vim capabilities. In other words, it avoids
+bloat and is versatile because it is small.
+
+CORE                                                            *wiki-md-core*
+
+The heart of wiki-md is a configuration variable called |g:wiki_root|. Set it
+to the path where you would like to keep a wiki before the plugin loads. Any
+file in this path will have `wiki` added to 'filetype'.
+
+The addition is key: for example, a markdown file might have the filetype
+`markdown.wiki`, meaning it uses both your markdown settings and your wiki
+settings. Similarly, a sample java program could have 'filetype' equal to
+`java.wiki` and a LaTeX document `tex.wiki`.
+
+wiki-md and its users can take advantage of this by adding settings, mappings,
+and other bits of customization to |ftplugin|, |indent-expression|, or
+|syntax| scripts for the wiki filetype.
+
+wiki-md leverages this for one purpose by default: to set 'path' to include
+the file-system tree rooted at |g:wiki_root| so that |gf|, `:find`, and
+friends will all include wiki results. The author conceives of this as a
+dynamic link system, where any word under the cursor in a file (text, code,
+markup, or otherwise) can be used as a link under the core key-bindings.
+
+==============================================================================
+
+USAGE                                                          *wiki-md-usage*
+
+Install it with your favorite plugin manager and then take advantage of
+the capabilities described in |wiki-md-core|. You may also like to lean on
+functions in |wiki-md-functions|.
+
+CONFIGURATION                                          *wiki-md-configuration*
+
+Variables are documented with there defaults.
+
+* *g:wiki_root*
+The root of a file-system tree that should be treated as a wiki. >
+    let g:wiki_root = expand('~/.wiki')
+<
+You may have more than one wiki by setting this variable accordingly, but it must be
+done before the ftdetect script is loaded, and it can only have one value at
+per vim session.
+
+==============================================================================
+
+FUNCTIONS                                                  *wiki-md-functions*
+
+                                                              *wiki#edit_root*
+wiki#edit_root({how})
+                Edits the root of the wiki tree as determined by {how}, a
+                stringifed command like `':edit'` or `':split'`.
+
+                                                                  *wiki#wikis*
+wiki#wikis({glob})
+                Returns a list of wikis under the root that match {glob}.
+
+                                                                 *wiki#search*
+wiki#search({pattern})
+                Uses `:vimgrep` to search the whole wiki tree for {pattern}.
+
+                                                              *wiki#make_link*
+wiki#make_link({file})
+                (Idempotent) Creates a wiki entry named {file} if none exists.
+
+                                                                   *wiki#goto*
+wiki#goto({file}, {how})
+                Creates a wiki entry named {file} if none exists, and then
+                opens it via the string {how}, which should be one of
+                    * `'edit'`      Open entry in current window
+                    * `'split'`     Open entry in split window
+                    * `'vert'`      Open entry in vertically split window
+                    * `'tab'`       Open entry in new tab
+
+                The default is `'edit'`.
+
+                                                             *wiki#tree_index*
+wiki#tree_index({root}, {prefix}, {exclude})
+                Returns a string that represents a tree-like index of the
+                wiki. {root} can be any directory. {prefix} is prepended to
+                all entries (useful for making bulleted lists).
+
+                Entries in the list {exclude} are removed from the result.
+
+                                                             *wiki#flat_index*
+wiki#flat_index({root}, {prefix}, {exclude})
+                Similarly, returns a string that represents a flat, list-like
+                index of the wiki. {root} can be any directory. {prefix} is
+                prepended to all entries (useful for making bulleted lists).
+
+                Entries in the list {exclude} are removed from the result.
+
+                                                         *wiki#complete_wikis*
+wiki#complete_wikis({ArgLead}, {CmdLine}, {CursorPos})
+                Returns the list of wikis for completion in `:command`s: >
+                    command -complete=customlist,wiki#complete_wikis ...
+<
+
+==============================================================================
+
+LICENSE                                                      *wiki-md-license*
+
+MIT License. Copyright © 2020 D. Ben Knoble
+Full text available at
+https://github.com/benknoble/wiki-md/blob/master/LICENSE
+
+BUGS                                                            *wiki-md-bugs*
+
+At the time of this writing, no major bugs have been found.
+
+If you find one and wish to report it, you can do so at
+https://github.com/benknoble/wiki-md/issues
+
+CONTRIBUTING                                            *wiki-md-contributing*
+
+Want to submit a new feature, bugfix, or hack on wiki-md?
+Submit pull requests to
+https://github.com/benknoble/wiki-md/pulls
+
+Existing code determines style guidelines.
+
+CREDITS                                                      *wiki-md-credits*
+
+Maintained by:
+- D. Ben Knoble (https://github.com/benkoble)
+
+Git repository:
+https://github.com/benknoble/wiki-md
+
+vim:tw=78:ts=8:ft=help:norl:
