@@ -116,7 +116,7 @@ wiki#complete_wikis({ArgLead}, {CmdLine}, {CursorPos})
 
 LICENSE                                                      *wiki-md-license*
 
-MIT License. Copyright © 2020 D. Ben Knoble
+BSD 3-Clause License. Copyright © 2020 D. Ben Knoble
 Full text available at
 https://github.com/benknoble/wiki-md/blob/master/LICENSE
 
