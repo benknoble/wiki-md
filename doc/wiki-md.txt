@@ -28,7 +28,7 @@ The addition is key: for example, a markdown file might have the filetype
 settings. Similarly, a sample java program could have 'filetype' equal to
 `java.wiki` and a LaTeX document `tex.wiki`.
 
-wiki-md and its users can take advantage of this by adding settings, mappings,
+wiki-md and its users take advantage of this by adding settings, mappings,
 and other bits of customization to |ftplugin|, |indent-expression|, or
 |syntax| scripts for the wiki filetype.
 
@@ -37,6 +37,9 @@ the file-system tree rooted at |g:wiki_root| so that |gf|, `:find`, and
 friends will all include wiki results. The author conceives of this as a
 dynamic link system, where any word under the cursor in a file (text, code,
 markup, or otherwise) can be used as a link under the core key-bindings.
+
+More path related information can be found at
+https://github.com/tpope/vim-apathy
 
 ==============================================================================
 
@@ -48,7 +51,7 @@ functions in |wiki-md-functions|.
 
 CONFIGURATION                                          *wiki-md-configuration*
 
-Variables are documented with there defaults.
+Variables are documented with their defaults.
 
 * *g:wiki_root*
 The root of a file-system tree that should be treated as a wiki. >
