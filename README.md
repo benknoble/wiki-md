@@ -2,8 +2,8 @@
 
 [![This project is considered stable](https://img.shields.io/badge/status-stable-success.svg)](https://benknoble.github.io/status/stable/)
 
-A file- and syntax-agnostic wiki platform built on vanilla vim. Pairs well with
-markdown and universal ctags.
+A filetype- and syntax-agnostic wiki platform built on vanilla vim. Pairs well
+with markdown and universal ctags.
 
 Ultimately, the goal is to provide a platform or scaffold on which to build your
 unique wiki- and information-management system.
@@ -40,7 +40,7 @@ automatically have the `wiki` filetype *in addition to their regular filetypes*.
 Javascript will still be javascript, and markdown will still be markdown. But
 they will *also* be wikis!
 
-Ay file with the `wiki` filetype will have the wiki tree added to `'path'`.
+Any file with the `wiki` filetype will have the wiki tree added to `'path'`.
 This enables `gf` anywhere, as well as other features.
 
 ### Advanced
