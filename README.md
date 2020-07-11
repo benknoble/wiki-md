@@ -5,14 +5,14 @@
 A filetype- and syntax-agnostic wiki platform built on vanilla vim. Pairs well
 with markdown and universal ctags.
 
-Ultimately, the goal is to provide a platform or scaffold on which to build your
-unique wiki- and information-management system.
+wiki-md goal provides a platform or scaffold on which to build your unique wiki-
+and information-management system.
 
 ## What does it do?
 
 wiki-md targets a given directory tree (`g:wiki_root`, defaults to `~/.wiki`)
 for use with vim's `'path'` option and provides a handful of autoloaded library
-functions that may prove useful in crafting management or navigation systems.
+functions that can be used to craft management or navigation systems.
 
 Yes, that's really it.
 
@@ -80,10 +80,8 @@ example](https://github.com/benknoble/wiki-md/issues/5)).  Unfortunately, when I
 released this plugin, GitHub Discussions was not out of Beta, so that was not an
 option then.
 
-I do not use social media and am rarely on Reddit, and I find those and most
-other methods both disorganized and not discoverable. Of course, you should feel
-free to share in whatever way you wish, but others may benefit if you share here
-:)
+I do not use social media and am rarely on Reddit. You should feel free to share
+in whatever way you wish, but others may benefit if you share here :)
 
 ## Principles
 
@@ -95,21 +93,11 @@ capabilities, to avoid bloat, and to be versatile.
 It is not a wiki *manager*, nor is it a wiki *editor*. It does not include
 calendars, alarms, checklists, tags, or hierarchical outlines.
 
-It prefers customization over sane defaults; it acknowledges that everyone
-has their own exobrain system, and attempts to enhance the experience of
-navigating it by staying out of the way.
+It prefers customizability over providing an out-of-the-box all-in-one
+experience. Everyone has their own exobrain system, and wiki-md enhances the
+navigation experience by staying out of the way.
 
 It prefers library-style functions and a do-it-yourself attitude, so *you* are
-in control of your wiki. Create commands, mappings, flashy popups, and more to
-make the experience what *you* want it to be.
-
-## Addendum
-
-It is remarkably difficult to describe something which is simultaneously the
-absence of so much and the power to do anything. While I expect the codebase to
-remain relatively stable (excepting finding and fixing bugs), I will greatly
-appreciate the time and feedback of anyone who finds the documentation
-confusing, unclear, or boring. (This includes both this README and the online
-help.) It is my aim to make this power exciting and put it in the hands of those
-who want it; I fear that a poor attempt to describe what is contained here will
-turn away so many who might otherwise enjoy this plugin.
+in control of your wiki. Create commands, mappings, [flashy
+popups](https://github.com/benknoble/wiki-md/issues/5), and more to make the
+experience what *you* want it to be.
