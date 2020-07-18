@@ -5,8 +5,8 @@
 A filetype- and syntax-agnostic wiki platform built on vanilla vim. Pairs well
 with markdown and universal ctags.
 
-wiki-md goal provides a platform or scaffold on which to build your unique wiki-
-and information-management system.
+wiki-md provides a platform or scaffold on which to build your unique wiki- and
+information-management system.
 
 ## What does it do?
 
