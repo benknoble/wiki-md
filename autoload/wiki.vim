@@ -57,8 +57,7 @@ function wiki#flat_index(root, prefix, exclude) abort
 endfunction
 
 function wiki#complete_wikis(ArgLead, CmdLine, CursorPos) abort
-  const l:wikis = wiki#wikis('**')
-  const l:wikis_no_root = l:wikis->map({ _, w -> s:strip_root(w) })
-  const l:matching = l:wikis_no_root->filter({ _, w -> w =~# a:ArgLead })
-  return l:matching
+  return wiki#wikis('**')
+        \ ->map({ _, w -> s:strip_root(w) })
+        \ ->filter({ _, w -> w =~# a:ArgLead })
 endfunction
