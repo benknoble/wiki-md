@@ -60,8 +60,29 @@ function wiki#flat_index(root, prefix, exclude) abort
   return s:make_index('*', a:root, a:prefix, a:exclude)
 endfunction
 
-function wiki#complete_wikis(ArgLead, CmdLine, CursorPos) abort
+function s:wiki_matches(pattern) abort
   return wiki#wikis('**')
         \ ->map({ _, w -> s:strip_root(w) })
-        \ ->filter({ _, w -> w =~# a:ArgLead })
+        \ ->filter({ _, w -> w =~# a:pattern })
+endfunction
+
+function wiki#complete_wikis(ArgLead, CmdLine, CursorPos) abort
+  return s:wiki_matches(a:ArgLead)
+endfunction
+
+function wiki#omnifunc(findstart, base) abort
+  if a:findstart
+    const match = getline('.')->matchstr('\<\f\+\%'.col('.').'c')
+    return col('.')-strlen(match)
+  else
+    return s:wiki_matches(a:base)
+  endif
+endfunction
+
+function wiki#ins_complete_wikis() abort
+  const start = wiki#omnifunc(1, '')
+  const base = getline('.')->strpart(start-1, col('.')-start)
+  const matches = wiki#omnifunc(0, base)
+  call complete(start, matches)
+  return ''
 endfunction

@@ -131,6 +131,23 @@ wiki#complete_wikis({ArgLead}, {CmdLine}, {CursorPos})
                     command -complete=customlist,wiki#complete_wikis ...
 <
 
+                                                               *wiki#omnifunc*
+wiki#omnifunc({findstart}, {base})
+                Returns the list of wikis for completion via 'completefunc' or
+                'omnifunc': >
+                    setlocal completefunc=wiki#omnifunc
+<
+
+                                                     *wiki#ins_complete_wikis*
+wiki#ins_complete_wikis()
+                Suitable for insert-mode mappings (see |complete()|): >
+                    " on some terminals, <C-h> is the same as <BS>;
+                    " we don't want to override backspace in insert-mode
+                    if "\<C-h>" isnot# "\<BS>"
+                      inoremap <C-h> <C-r>=wiki#ins_complete_wikis()<CR>
+                    endif
+<
+
 ==============================================================================
 
 LICENSE                                                      *wiki-md-license*
