@@ -76,7 +76,23 @@ wiki#wikis({glob})
 
                                                                  *wiki#search*
 wiki#search({pattern})
-                Uses `:vimgrep` to search the whole wiki tree for {pattern}.
+                Deprecated: |:vimgrep| is often too slow over the whole tree,
+                and users probably want more customization. This will be
+                removed in a future release. Instead, you should think of
+                "wiki search" as "some search command using `g:wiki_root`"
+                (you'll want to use |:execute|). Examples: >
+                    " if your 'grepprg' needs -R
+                    execute 'grep -R' pattern g:wiki_root
+
+                    " ripgrep
+                    set grepprg=rg\ --vimgrep
+                    execute 'grep' pattern g:wiki_root
+
+                    " vimgrep
+                    execute 'vimgrep' pattern g:wiki_root.'/**'
+<
+
+                Uses |:vimgrep| to search the whole wiki tree for {pattern}.
 
                                                               *wiki#make_link*
 wiki#make_link({file})

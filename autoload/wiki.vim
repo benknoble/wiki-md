@@ -7,6 +7,10 @@ function wiki#wikis(glob) abort
 endfunction
 
 function wiki#search(pattern) abort
+  echohl WarningMsg
+  echomsg "Deprecated: see ``:help wiki#search''"
+  echohl None
+
   if empty(a:pattern) || a:pattern =~# '^\s\+$'
     return
   end
