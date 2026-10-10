@@ -19,7 +19,7 @@ endfunction
 
 function wiki#make_link(file) abort
   const l:found = findfile(a:file)
-  if empty(l:found)
+  if empty(l:found) && empty(finddir(a:file))
     call writefile([], g:wiki_root.'/'.a:file)
   endif
 endfunction
